@@ -11,5 +11,4 @@ CREATE TABLE medicos (
     numero VARCHAR(20),
     uf VARCHAR(2) NOT NULL,
     cidade VARCHAR(100) NOT NULL
-
 );
