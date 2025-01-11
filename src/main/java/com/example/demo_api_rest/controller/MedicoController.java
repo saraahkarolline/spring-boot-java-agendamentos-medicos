@@ -54,14 +54,16 @@ public class MedicoController {
         }
 
         @GetMapping
-        public Page<DadosListagemMedico> listar(@PageableDefault(size=10, page = 0, sort = {"crm"}) Pageable paginacao) {
+        public Page<DadosListagemMedico> listar(Pageable paginacao) {
+        //public Page<DadosListagemMedico> listar(Pageable paginacao) {
                 //retorna do repositório todos os médicos cadastrados e converte para uma lista de DadosListagemMedico
             return repository.findAll(paginacao).map(DadosListagemMedico::new);
         }
-        @PutMapping("medicos/{id}")
+        @PutMapping
         @Transactional  
         public String atualizar(@RequestBody @Valid DadosListagemMedicoAtualizar dadosAtualizar) {
-                repository.save( Medico(dadosAtualizar));
+                var medico = repository.getReferenceById( dadosAtualizar.id());
+                medico.atualizarInformacoes(dadosAtualizar);
             
             return "Médico atualizado com sucesso!";
         }    

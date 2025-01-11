@@ -1,5 +1,6 @@
 package com.example.demo_api_rest.medico;
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import lombok.*;
 import com.example.demo_api_rest.endereco.Endereco;
 
@@ -16,6 +17,7 @@ public class Medico {
     private String nome;
     private String email;
     private String crm;
+    private String telefone;
 
 
     @Enumerated(EnumType.STRING)
@@ -30,6 +32,20 @@ public class Medico {
         this.crm = dados.crm();
         this.especialidade = dados.especialidade();
         this.endereco = new Endereco(dados.endereco());
+    }
+
+    public void atualizarInformacoes(DadosListagemMedicoAtualizar dadosAtualizar) {
+        if (dadosAtualizar.nome() != null){
+            this.nome = dadosAtualizar.nome();
+        }
+        if (dadosAtualizar.telefone() != null){
+            this.telefone = dadosAtualizar.telefone();
+        }
+        if (dadosAtualizar.endereco() != null){
+            this.endereco.atualizarInformacoes(dadosAtualizar.endereco());
+        }
+       
+
     }
 
     
