@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo_api_rest.medico.DadosCadastroMedico;
 import com.example.demo_api_rest.medico.DadosListagemMedico;
+import com.example.demo_api_rest.medico.DadosListagemMedicoAtualizar;
 import com.example.demo_api_rest.medico.Medico;
 import com.example.demo_api_rest.medico.MedicoRepository;
 
@@ -21,6 +22,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
 
 
 
@@ -54,7 +58,15 @@ public class MedicoController {
                 //retorna do repositório todos os médicos cadastrados e converte para uma lista de DadosListagemMedico
             return repository.findAll(paginacao).map(DadosListagemMedico::new);
         }
-        
+        @PutMapping("medicos/{id}")
+        @Transactional  
+        public String atualizar(@RequestBody @Valid DadosListagemMedicoAtualizar dadosAtualizar) {
+                repository.save( Medico(dadosAtualizar));
+            
+            return "Médico atualizado com sucesso!";
+        }    
+                
+       
 
 
 }
