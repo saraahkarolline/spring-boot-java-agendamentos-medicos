@@ -1,6 +1,5 @@
 package com.example.demo_api_rest.medico;
 import jakarta.persistence.*;
-import jakarta.validation.Valid;
 import lombok.*;
 import com.example.demo_api_rest.endereco.Endereco;
 
