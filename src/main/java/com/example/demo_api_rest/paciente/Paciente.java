@@ -2,7 +2,6 @@ package com.example.demo_api_rest.paciente;
 
 
 import com.example.demo_api_rest.endereco.Endereco;
-import com.example.demo_api_rest.paciente.*;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -20,7 +19,7 @@ public class Paciente {
     private String nome;
     private String email;
     private String cpf;
-    private String dataNascimento;
+    private String datanascimento;
     private String telefone;
     private Boolean ativo;
 
@@ -31,9 +30,10 @@ public class Paciente {
         this.nome = dados.nome();
         this.email = dados.email();
         this.cpf = dados.cpf();
-        this.dataNascimento = dados.dataNascimento();
+        this.datanascimento = dados.datanascimento();
         this.telefone = dados.telefone();
         this.endereco = new Endereco(dados.endereco());
+        this.ativo = true;
     }
     public void atualizarInformacoes(DadosListagemPacienteAtualizar dadosAtualizarPaciente) {
         if (dadosAtualizarPaciente.nome() != null){
